@@ -33,37 +33,21 @@ margin: 10px;
 <h1>City</h1>
 	<form action="city" name="form"method="get">
 		<input type="submit" value="Dodaj grad" name="option" >
-		<p>${errorAdd}</p>
-	
+		<p>${errorAdd}</p> 
 		<input type="submit" value="Prikazi sve gradove" name="option">
-		<div>
-			<table>
-			<c:forEach items="${list}" var="l">
-			<thead>
-				<tr>
-					<td>Ptt Broj</td>	
-					<td>Naziv</td>
-				</tr>
-			</thead>
-			<tbody>
-
-				<tr>
-				<td>${l.PTTB}</td>	
-				<td>${l.naziv}</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-			</table>
-		</div>
-	
 		<input type="submit" value="Izmeni naziv grada" name="option">
+		<p>${errorUpdate}</p>
 		<div id="one">
 		<input type="text" name="naziv" placeholder="Unesi grad" /> 
 		<input type="submit" value="Prikaz podataka o gradu" name="option">
 		</div>
 		<p>${city}</p>
 		<p>${errorCity}</p>
-		<input type="submit" value="Brisanje grada" name="option">
+		<div id="one">
+		<input type="text" name="nazivG" placeholder="Unesi grad" /> 
+		<input type="submit" value="Obrisi grad" name="option">
+		<p>${errorCityO}</p>
+		</div>
 	</form>
 </body>
 </html>

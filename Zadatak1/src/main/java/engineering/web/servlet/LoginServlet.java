@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 		
 		switch (selection) {
 		case "City":
-			req.getRequestDispatcher("/citypage.jsp").forward(req, resp);
+			req.getRequestDispatcher("/city/citypage.jsp").forward(req, resp);
 			break;
 		case "Manufacturer":
 			req.getRequestDispatcher("/manufacturerpage.jsp").forward(req, resp);

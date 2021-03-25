@@ -32,15 +32,15 @@ margin: 10px;
 <h1>City</h1>
 	<form action="city" name="form"method="post">
 		<input type="submit" value="Dodaj grad" name="option" disabled="disabled">
-		<div>
-			<label for="pttb">PTT Broj: </label>
-			<input type="number" name="pttb" placeholder="Dodaj PTT Broj" /> 
-			<label for="naziv">Naziv: </label> 
-			<input type="text" name="naziv" placeholder="Dodaj Naziv" /> 
-			<input type="submit" value="Dodaj" name="option">
-		</div>
 		<input type="submit" value="Prikazi sve gradove" name="option" disabled="disabled">
 		<input type="submit" value="Izmeni naziv grada" name="option" disabled="disabled">
+		<div>
+			<label for="naziv1">Unesi stari naziv: </label> 
+			<input type="text" name="naziv1" placeholder="Unesi Naziv" /> 
+			<label for="naziv2">Unesi novi naziv: </label> 
+			<input type="text" name="naziv2" placeholder="Unesi Naziv" /> 
+			<input type="submit" value="Izmeni" name="option">
+		</div>
 		<div id="one">
 		<input type="text" name="naziv" placeholder="Unesi grad" disabled="disabled"/> 
 		<input type="submit" value="Prikaz podataka o gradu" name="option" disabled="disabled">

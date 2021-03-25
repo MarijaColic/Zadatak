@@ -18,16 +18,16 @@ public class CityManagemenServlet extends HttpServlet{
 		switch (option) {
 		case "Dodaj grad":
 			req.setAttribute("unos", "Unesite podatke o gradu");
-			req.getRequestDispatcher("/addcity.jsp").forward(req, resp);
+			req.getRequestDispatcher("/city/addcity.jsp").forward(req, resp);
 			break;
 		
 		case "Prikazi sve gradove":
 			req.setAttribute("list", cities);
-			req.getRequestDispatcher("/citypage.jsp").forward(req, resp);
+			req.getRequestDispatcher("/city/viewcity.jsp").forward(req, resp);
 			break;
 	
 		case "Izmeni naziv grada":
-			req.getRequestDispatcher("/updatecity.jsp").forward(req, resp);
+			req.getRequestDispatcher("/city/updatecity.jsp").forward(req, resp);
 			break;
 		
 		case "Prikaz podataka o gradu":
@@ -35,18 +35,37 @@ public class CityManagemenServlet extends HttpServlet{
 			for(CityRepository c : cities) {
 				if(c.getNaziv().equals(naziv)){
 					req.setAttribute("city", "PTTBroj grada je : " + c.getPTTB() + " , Naziv grada je : " + c.getNaziv());
-					req.getRequestDispatcher("/citypage.jsp").forward(req, resp);
+					req.getRequestDispatcher("/city/citypage.jsp").forward(req, resp);
 					}
 			
 				else {
 					req.setAttribute("errorCity", "Ne postoji takav grad u bazi");
-					req.getRequestDispatcher("/citypage.jsp").forward(req, resp);
+					req.getRequestDispatcher("/city/citypage.jsp").forward(req, resp);
 				}
 			}
 			break;
 		
-		case "Brisanje grada":
-
+		case "Obrisi grad":
+			String nazivG = req.getParameter("nazivG");
+			for(CityRepository c : cities) {
+				if(c.getNaziv().equals(nazivG)){
+					req.setAttribute("naziv", c.getNaziv());
+					req.setAttribute("pttb", c.getPTTB());
+					req.getRequestDispatcher("/city/deletecity.jsp").forward(req, resp);
+					}
+			
+				else {
+					req.setAttribute("errorCityO", "Ne postoji takav grad u bazi");
+					req.getRequestDispatcher("/city/citypage.jsp").forward(req, resp);
+				}
+			}
+			
+			break;
+		case "Odustani od brisanja":
+			req.getRequestDispatcher("/city/citypage.jsp").forward(req, resp);
+			break;
+		case "Potvrdi brisanje":
+			
 			break;
 		}
 		
@@ -64,27 +83,29 @@ public class CityManagemenServlet extends HttpServlet{
 			for(CityRepository c : cities) {
 				if(!String.valueOf(c.getPTTB()).equals(pttb)) {
 					cities.add(new CityRepository(Long.parseLong(pttb), naziv));
-					req.getRequestDispatcher("/citypage.jsp").forward(req, resp);
+					req.getRequestDispatcher("/city/citypage.jsp").forward(req, resp);
 				}else {
 					req.setAttribute("errorAdd", "Grad vec postoji u bazi ..");
-					req.getRequestDispatcher("/citypage.jsp").forward(req, resp);
+					req.getRequestDispatcher("/city/citypage.jsp").forward(req, resp);
 				}
 			}
+		
 			break;
 		case "Izmeni":
 			String stariNaziv = req.getParameter("naziv1");
 			String noviNaziv = req.getParameter("naziv2");
-
+			
 			for(CityRepository c : cities) {
 				if(stariNaziv.equals(c.getNaziv())) {
 					c.setNaziv(noviNaziv);
-					req.getRequestDispatcher("/citypage.jsp").forward(req, resp);
+					req.getRequestDispatcher("/city/citypage.jsp").forward(req, resp);
 				}else {
-					req.setAttribute("errorAdd", "Grad ne postoji u bazi ..");
-					req.getRequestDispatcher("/citypage.jsp").forward(req, resp);
+					req.setAttribute("errorUpdate", "Pogresan unos");
+					req.getRequestDispatcher("/city/citypage.jsp").forward(req, resp);
 				}
 			}
 			break;
+		
 		}
 			
 		

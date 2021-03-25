@@ -14,13 +14,15 @@ public class Context implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
+		CityRepository beograd = new CityRepository(11000, "Beograd");
+		
 		List<UserRepository> users = new ArrayList<>();
-		users.add(new UserRepository("Marija", "Colic", "colic@gm.com", "123"));
+		users.add(new UserRepository("Marija", "Colic", "colic@gm.com", "123",beograd));
 		sce.getServletContext().setAttribute("users", users);
 		
+		
 		List<CityRepository> cities = new ArrayList<>();
-		cities.add(new CityRepository(11000, "Beograd"));
-		cities.add(new CityRepository(21000, "Novi Sad"));
+		cities.add(beograd);
 		sce.getServletContext().setAttribute("cities", cities);
 	}
 

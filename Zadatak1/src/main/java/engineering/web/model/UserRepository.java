@@ -6,13 +6,32 @@ public class UserRepository {
 	private String prezime;
 	private String email;
 	private String sifra;
-	public UserRepository(String ime, String prezime, String email, String sifra) {
+	private CityRepository city;
+	public UserRepository(String ime, String prezime, String email, String sifra, CityRepository city) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
 		this.email = email;
 		this.sifra = sifra;
+		this.city=city;
 	}
+	
+	
+	public UserRepository(String ime, String prezime) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+	}
+
+
+	public CityRepository getCity() {
+		return city;
+	}
+
+	public void setCity(CityRepository city) {
+		this.city = city;
+	}
+
 	public String getIme() {
 		return ime;
 	}

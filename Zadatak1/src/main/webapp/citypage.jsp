@@ -25,13 +25,16 @@ height: 60px;
 }
 #one>input{
 margin: 10px;
+
 }
 </style>
 </head>
 <body>
 <h1>City</h1>
 	<form action="city" name="form"method="get">
-		<input type="submit" value="Dodaj grad" name="option">
+		<input type="submit" value="Dodaj grad" name="option" >
+		<p>${errorAdd}</p>
+	
 		<input type="submit" value="Prikazi sve gradove" name="option">
 		<div>
 			<table>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import engineering.web.model.CityRepository;
 import engineering.web.model.UserRepository;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -21,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 		List<UserRepository> users = (List<UserRepository>) getServletContext().getAttribute("users");
 		for(UserRepository u : users) {
 			if(u.getEmail().equals(email) && u.getSifra().equals(password)) {
-				req.setAttribute("user", new UserRepository(u.getIme(),u.getPrezime(),"",""));
+				req.setAttribute("user", new UserRepository(u.getIme(),u.getPrezime()));
 				req.getRequestDispatcher("/mainpage.jsp").forward(req, resp);
 			}
 			else {

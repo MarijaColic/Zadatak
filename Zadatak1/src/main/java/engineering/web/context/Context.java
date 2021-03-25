@@ -7,6 +7,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import engineering.web.model.CityRepository;
 import engineering.web.model.UserRepository;
 @WebListener
 public class Context implements ServletContextListener {
@@ -17,6 +18,10 @@ public class Context implements ServletContextListener {
 		users.add(new UserRepository("Marija", "Colic", "colic@gm.com", "123"));
 		sce.getServletContext().setAttribute("users", users);
 		
+		List<CityRepository> cities = new ArrayList<>();
+		cities.add(new CityRepository(11000, "Beograd"));
+		cities.add(new CityRepository(21000, "Novi Sad"));
+		sce.getServletContext().setAttribute("cities", cities);
 	}
 
 	@Override

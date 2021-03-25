@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
 		List<UserRepository> users = (List<UserRepository>) getServletContext().getAttribute("users");
 		for(UserRepository u : users) {
 			if(u.getEmail().equals(email) && u.getSifra().equals(password)) {
+				req.setAttribute("user", new UserRepository(u.getIme(),u.getPrezime(),"",""));
 				req.getRequestDispatcher("/mainpage.jsp").forward(req, resp);
 			}
 			else {
@@ -29,4 +30,25 @@ public class LoginServlet extends HttpServlet {
 			}
 		}
 	}
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException ,IOException {
+		String selection = req.getParameter("operation");
+		
+		switch (selection) {
+		case "City":
+			req.getRequestDispatcher("/citypage.jsp").forward(req, resp);
+			break;
+		case "Manufacturer":
+			req.getRequestDispatcher("/manufacturerpage.jsp").forward(req, resp);
+			break;
+		case "Product":
+			req.getRequestDispatcher("/productpage.jsp").forward(req, resp);
+			break;
+		case "Logout":
+			req.getRequestDispatcher("/index.jsp").forward(req, resp);
+			break;
+		
+		}
+	};
+	
 }

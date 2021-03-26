@@ -8,6 +8,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import engineering.web.model.CityRepository;
+import engineering.web.model.ManufacurerRepository;
 import engineering.web.model.UserRepository;
 @WebListener
 public class Context implements ServletContextListener {
@@ -24,6 +25,10 @@ public class Context implements ServletContextListener {
 		List<CityRepository> cities = new ArrayList<>();
 		cities.add(beograd);
 		sce.getServletContext().setAttribute("cities", cities);
+		
+		List<ManufacurerRepository> manlist = new ArrayList<>();
+		manlist.add(new ManufacurerRepository(152, "01020666352","Naziv", "Adresa1", beograd));
+		sce.getServletContext().setAttribute("manlist", manlist);
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public class CityRepository {
 	}
 	@Override
 	public String toString() {
-		return "CityRepository [PTTB=" + PTTB + ", naziv=" + naziv + "]";
+		return  naziv;
 	}
 	
 	

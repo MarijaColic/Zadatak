@@ -33,10 +33,32 @@ margin: 10px;
 <h1>Manufacturer</h1>
 	<form action="man" name="form"method="get">
 		<input type="submit" value="Dodaj proizvodjaca" name="option" >
-		<p>${errorAdd}</p>
-		<p>${errAdd}</p>
 		<input type="submit" value="Prikazi sve proizvodjace" name="option">
-		
+			<div>
+			<table>
+			<thead>
+				<tr>
+					<td>PIB</td>	
+					<td>JMBG</td>
+					<td>Naziv</td>	
+					<td>Adresa</td>
+					<td>Grad</td>	
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach items="${list}" var="l">
+				<tr>
+				<td>${l.PIB}</td>	
+				<td>${l.JMBG}</td>
+				<td>${l.naziv}</td>	
+				<td>${l.adresa}</td>
+				<td>${l.city}</td>	
+				
+				</tr>
+			</c:forEach>
+			</tbody>
+			</table>
+		</div>
 		<input type="submit" value="Izmeni podatke o proizvodjacu" name="option">
 		
 		<div id="one">

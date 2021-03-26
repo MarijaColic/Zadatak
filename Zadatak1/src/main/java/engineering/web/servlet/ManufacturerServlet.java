@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import engineering.web.model.CityRepository;
 import engineering.web.model.ManufacurerRepository;
 @WebServlet("/man")
 public class ManufacturerServlet extends HttpServlet {
@@ -23,7 +25,8 @@ public class ManufacturerServlet extends HttpServlet {
 			req.getRequestDispatcher("/manufacturer/addmanpage.jsp").forward(req, resp);
 			break;
 		case "Prikazi sve proizvodjace":
-			
+			req.setAttribute("list", manlist);
+			req.getRequestDispatcher("/manufacturer/viewman.jsp").forward(req, resp);
 			break;
 
 		case "Izmeni podatke o proizvodjacu":
@@ -55,9 +58,14 @@ public class ManufacturerServlet extends HttpServlet {
 			
 			for(ManufacurerRepository man  : manlist) {
 				if(!String.valueOf(man.getPIB()).equals(pib)) {
-					manlist.add(new ManufacurerRepository(man.getPIB(), man.getJMBG(), man.getNaziv(),man.getAdresa(), man.getCity()));
+					if(grad.equals(man.getCity().getNaziv())) {
+					manlist.add(new ManufacurerRepository(Integer.parseInt(pib),jmbg,naziv,adresa, new CityRepository(man.getCity().getPTTB(), grad)));
 					req.getRequestDispatcher("/manufacturer/manufacturerpage.jsp").forward(req, resp);
-				}else {
+					}else {
+						req.setAttribute("errAdd", "Ne postoji takav grad u bazi");
+						req.getRequestDispatcher("/manufacturer/manufacturerpage.jsp").forward(req, resp);
+					}
+					}else {
 					req.setAttribute("errorAdd", "Proizvodjac vec postoji u bazi");
 					req.getRequestDispatcher("/manufacturer/manufacturerpage.jsp").forward(req, resp);
 				}
